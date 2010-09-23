@@ -1,0 +1,94 @@
+------------
+Introduction
+------------
+
+This project contains a Tynt API client implemented in Java.  The project is
+Maven-based, and thus requires that you have the latest version of Maven
+installed (See maven.apache.org for details).  There is also a Tynt API client
+written in Ruby hosted on github.com.
+
+
+------------------------------------
+Building the Tynt API Client Library
+------------------------------------
+
+To build the client library, run the following Maven command:
+
+# mvn package
+
+This will create a tynt-client-<version>.jar file in the 'target' directory.
+If you'd like to install the library for use in your own maven project,
+run the following command:
+
+# mvn install
+
+After you've installed the library, you'll be able to add in in your own
+projects pom.xml file with the following dependency entry:
+
+<project>
+  ...
+  <dependencies>
+    ...
+    <dependency>
+      <groupId>com.tynt.api</groupId>
+      <artifactId>tynt-client</artifactId>
+      <version>LATEST</version>
+    </dependency>
+    ...
+  </dependencies>
+  ...
+</project>
+
+Where "LATEST" should be set to the current version of the Tynt Client library.
+
+
+---------------------------------
+Using the Tynt API Client Library
+---------------------------------
+
+The Tynt API is used primarily through the TyntClient class.  Below is a simple
+example of how to use TyntClient to print out the top categories that Tynt
+tracks.
+
+import com.tynt.api.v1.*;
+import com.tynt.api.v1.model.*;
+import java.util.*;
+
+public class TyntCategoryPrinter {
+  public static void main(String... args) {
+    String appId = "your-app-id-from-dev.tynt.com-goes-here";    
+    TyntClient tyntClient = new TyntClient(appId);
+    try {
+      Collection<Category> categories = tyntClient.getTopCategories();
+      for (Category category : categories) {
+        System.out.println("Category: " + category.getDisplayName());
+      }
+    }
+    catch (TyntAuthenticationException ex) {
+      System.err.println(
+        "Your Tynt App ID is invalid.  Get a valid one from dev.tynt.com.");
+    }
+    catch(TyntApiException ex) {
+      System.err.println("The Tynt API exploded!");
+    }
+  }
+}
+
+Make sure you get a valid Tynt App ID from dev.tynt.com and use it in this
+code example.  You'll also need the following .jar files on your classpath for
+this command to run:
+
+tynt-client-<version>.jar
+jackson-core-asl-1.6.0.jar
+jackson-mapper-asl-1.6.0.jar
+
+If you're using Maven, you'll get the Jackson JSON libraries automatically.  If
+you're not using Maven, you'll need to download those .jar files from
+jackson.codehaus.org
+
+
+----------
+Contact Us
+----------
+
+Have questions of feedback?  Contact us at support@tynt.com
