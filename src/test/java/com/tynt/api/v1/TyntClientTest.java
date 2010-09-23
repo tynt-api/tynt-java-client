@@ -1,13 +1,11 @@
 package com.tynt.api.v1;
 
-import java.util.List;
 import com.tynt.api.v1.model.Image;
 import com.tynt.api.v1.model.Images;
 import com.tynt.api.v1.model.Page;
 import com.tynt.api.v1.model.Pages;
 import org.junit.Test;
 import com.tynt.api.v1.model.Category;
-import com.tynt.api.v1.model.SearchResults;
 import com.tynt.api.v1.model.TyntApiException;
 import java.util.Collection;
 import org.junit.BeforeClass;
@@ -26,9 +24,12 @@ public class TyntClientTest {
     @BeforeClass
     public static void init() {
         if (tyntAppId == null) {
+            System.err.println("\n\n");
             System.err.println("*** No Tynt app ID was specified");
             System.err.println("*** You can obtain an app ID from http://dev.tynt.com");
-            System.err.println("*** Once, you have a Tynt app ID, re-run this test with '-Dtynt.api.appid=<your-app-id>'");
+            System.err.println("*** Once, you have a Tynt app ID, re-run this test with:");
+            System.err.println("    mvn <goal> -DargLine=\"-Dtynt.api.appid=<your-app-id>\"");
+            System.err.println("\n\n");
             System.exit(1);
         }
 

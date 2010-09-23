@@ -1,11 +1,12 @@
 ------------
 Introduction
 ------------
+The Tynt API is a JSON-based web service located at http://api.tynt.com/.
 
-This project contains a Tynt API client implemented in Java.  The project is
-Maven-based, and thus requires that you have the latest version of Maven
-installed (See maven.apache.org for details).  There is also a Tynt API client
-written in Ruby hosted on github.com.
+This project contains a Tynt API client implemented in Java.  This project is
+Maven-based, and therefore requires that you have a current version of Maven
+installed (See maven.apache.org for details).  If you're interested in a client
+implementation in Ruby, checkout our Ruby-based project on github.com.
 
 
 ------------------------------------
@@ -22,8 +23,9 @@ run the following command:
 
 # mvn install
 
-After you've installed the library, you'll be able to add in in your own
-projects pom.xml file with the following dependency entry:
+After you've installed the library to your local Maven repository directory,
+you'll be able to add a dependency entry in your own project's POM file.  Add
+the dependency like so:
 
 <project>
   ...
@@ -46,9 +48,21 @@ Where "LATEST" should be set to the current version of the Tynt Client library.
 Using the Tynt API Client Library
 ---------------------------------
 
-The Tynt API is used primarily through the TyntClient class.  Below is a simple
-example of how to use TyntClient to print out the top categories that Tynt
-tracks.
+The Tynt client requires the following .jar files to be on the classpath:
+
+tynt-client-<version>.jar
+jackson-core-asl-1.6.0.jar
+jackson-mapper-asl-1.6.0.jar
+
+If you're using Maven, you'll get the Jackson JSON libraries automatically.  If
+you're not using Maven, you'll need to download these .jar files from
+jackson.codehaus.org
+
+The Tynt API is used primarily through the TyntClient class.  You can explore
+the features of the Tynt API by browsing TyntClient's available methods.
+
+Below is a simple example of how to use TyntClient to print out the top Tynt
+categories.
 
 import com.tynt.api.v1.*;
 import com.tynt.api.v1.model.*;
@@ -74,17 +88,9 @@ public class TyntCategoryPrinter {
   }
 }
 
-Make sure you get a valid Tynt App ID from dev.tynt.com and use it in this
-code example.  You'll also need the following .jar files on your classpath for
-this command to run:
-
-tynt-client-<version>.jar
-jackson-core-asl-1.6.0.jar
-jackson-mapper-asl-1.6.0.jar
-
-If you're using Maven, you'll get the Jackson JSON libraries automatically.  If
-you're not using Maven, you'll need to download those .jar files from
-jackson.codehaus.org
+For this code example to run, you'll need to make sure that the "appId"
+variable is set to a valid Tynt app ID.  If you don't have an app ID yet, you
+can get one at dev.tynt.com.
 
 
 ----------

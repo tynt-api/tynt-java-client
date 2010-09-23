@@ -3,7 +3,6 @@ package com.tynt.api.v1;
 import com.tynt.api.v1.model.Category;
 import com.tynt.api.v1.model.Images;
 import com.tynt.api.v1.model.Pages;
-import com.tynt.api.v1.model.SearchResults;
 import com.tynt.api.v1.model.TyntApiException;
 import com.tynt.api.v1.model.TyntAuthenticationException;
 import java.io.IOException;
